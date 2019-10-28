@@ -8,6 +8,7 @@ let ydirection = 1; // Top to Bottom
 
 let img;
 let s;
+let s1;
 
 function preload() {
   img = loadImage("image/ghost.png");
@@ -23,17 +24,18 @@ function setup() {
   ypos = windowHeight / 1.5;
 
   s = createAudio("sound/heartbeat1.mp3");
+  s1 = creareAudio("sound/scaryKnock.mp3");
 
 }
 
 function draw() {
     background(0, 60);
-    ball();
+    ghost();
   // Update the position of the shape
 
 }
 
-function ball() {
+function ghost() {
   xpos = xpos + xspeed * xdirection;
   ypos = ypos + yspeed * ydirection;
 
@@ -54,6 +56,7 @@ function mousePressed() {
   if(dist(mouseX, mouseY, xpos, ypos) < 80) {
 
     s.play(true);
+    s1.play(true);
     // s.volume(100);
     // console.log("click");
   }
