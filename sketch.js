@@ -23,7 +23,7 @@ function setup() {
   xpos = windowWidth / 1.5;
   ypos = windowHeight / 1.5;
 
-  s = createAudio("sound/heartbeat1.mp3");
+  s = createAudio("sound/scaryKnock.mp3");
   // s1 = creareAudio("sound/scaryKnock.mp3");
 
 }
