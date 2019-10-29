@@ -3,12 +3,20 @@ let xpos, ypos; // Starting position of shape
 let rad = 80; // Width of the shape
 let xspeed = 3; // Speed of the shape
 let yspeed = 2.5; // Speed of the shape
-let xdirection = 1; // Left or Right
-let ydirection = 1; // Top to Bottom
+let xdir = 1; // Left or Right
+let ydir = 1; // Top to Bottom
+
+let xpos1, ypos1; // Starting position of shape
+let rad1 = 60; // Width of the shape
+let xspeed1 = 5; // Speed of the shape
+let yspeed1 = 3; // Speed of the shape
+let xdir1 = -1; // Left or Right
+let ydir1 = -1; // Top to Bottom
 
 let img;
 let s;
-// let s1;
+let c = 0;
+
 
 function preload() {
   img = loadImage("image/ghost.png");
@@ -23,41 +31,45 @@ function setup() {
   xpos = windowWidth / 1.5;
   ypos = windowHeight / 1.5;
 
-  s = createAudio("sound/scaryKnock.mp3");
-  // s1 = creareAudio("sound/scaryKnock.mp3");
-
+  s = createAudio("sound/scarysound.mp3");
 }
 
 function draw() {
     background(0, 60);
-    ghost();
+    Ghost();
   // Update the position of the shape
 
 }
 
-function ghost() {
-  xpos = xpos + xspeed * xdirection;
-  ypos = ypos + yspeed * ydirection;
-
+function Ghost() {
+  xpos = xpos + xspeed * xdir;
+  ypos = ypos + yspeed * ydir;
   // Test to see if the shape exceeds the boundaries of the screen
   // If it does, reverse its direction by multiplying by -1
   if (xpos > width - rad || xpos < rad) {
-    xdirection *= -1;
+    xdir *= -1;
   }
   if (ypos > height - rad || ypos < rad) {
-    ydirection *= -1;
+    ydir *= -1;
   }
   // Draw the shape
   image(img, xpos, ypos, rad, rad);
-  tint(200, random(100));
+  tint(100, random(100));
 }
 
 function mousePressed() {
-  if(dist(mouseX, mouseY, xpos, ypos) < 80) {
-
+  if(dist(mouseX, mouseY, xpos, ypos) < 75) {
+    setTimeout(changeBackground, 33000);
     s.play(true);
-    // s1.play(true);
-    // s.volume(100);
-    // console.log("click");
+  }
+}
+
+function changeBackground() {
+  if (c <= 1){
+    c++;
+    background(200,0,0);
+    setTimeout(changeBackground, 33000);
+  } else {
+    background(200,0,0);
   }
 }
